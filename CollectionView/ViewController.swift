@@ -9,8 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
    
-    let noOfCell:CGFloat = 2
-    let spacingBetweenCells:CGFloat = 10
+    let noOfCell:CGFloat = 4
+    let spacingBetweenCells:CGFloat = 5
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
@@ -32,14 +32,14 @@ class ViewController: UIViewController {
     
     var isScrollingForward = true
     func startScrolling() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
-            self?.autoScrollCollectionView()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self else { return }
+            self.autoScrollCollectionView(self.collectionView)
         }
     }
 
     
-    @objc func autoScrollCollectionView() {
-        guard let collectionView = collectionView else { return }
+    @objc func autoScrollCollectionView(_ collectionView: UICollectionView) {
         let currentOffset = collectionView.contentOffset
         let width = (collectionView.frame.width / noOfCell) + spacingBetweenCells/noOfCell
         var newOffset: CGPoint
