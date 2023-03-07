@@ -24,4 +24,5 @@ class CustomCell: UICollectionViewCell {
         img.layer.shadowRadius = 2
         img.layer.masksToBounds = false
     }
+    
 }
